@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>Max Ephra | Blockchain & Full Stack</title>
+    <!-- Font Awesome 4.7 (ícone WhatsApp) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Google Fonts: Inter (igual ao modelo do cartão) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *,
+        *:after,
+        *:before {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at 20% 30%, #121212, #030303);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            font-family: "Inter", sans-serif;
+        }
+
+        /* container responsivo */
+        .main-wrapper {
+            max-width: 420px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* ========= IMAGEM NO TOPO (LIMPA, SEM SOBREPOSIÇÃO) ========= */
+        .image-top {
+            position: relative;
+            width: 100%;
+            background: #0a0a0a;
+            overflow: hidden;
+            border-radius: 32px 32px 0 0;
+            cursor: pointer;
+        }
+
+        .image-top img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease, filter 0.4s;
+        }
+
+        .image-top:hover img {
+            transform: scale(1.02);
+            filter: brightness(1.05) contrast(1.02);
+        }
+
+        /* efeito de luz sutil na imagem */
+        .image-top::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,200,100,0), rgba(255,140,0,0));
+            pointer-events: none;
+            transition: background 0.4s;
+        }
+
+        .image-top:hover::after {
+            background: linear-gradient(135deg, rgba(255,200,100,0.08), rgba(255,140,0,0.12));
+        }
+
+        /* ========= CARTÃO DE CRÉDITO (preto, textos brancos, centralizado) ========= */
+        .card {
+            position: relative;
+            width: 100%;
+            padding: 28px 20px 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-radius: 0 0 32px 32px;
+            border: solid 1px rgba(255, 255, 255, 0.08);
+            background: #0b0b10;
+            background-image: radial-gradient(circle at 10% 20%, #111118, #020205);
+            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+            text-align: center; /* centraliza todo o conteúdo textual */
+        }
+
+        /* Estilos dos textos conforme solicitado */
+        .card-number {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .card-number h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: -0.3px;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        /* Botão WhatsApp horizontal (ícone + texto) */
+        .whatsapp-horizontal {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(95deg, #25D366, #128C7E);
+            padding: 12px 24px;
+            border-radius: 60px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 6px 14px rgba(37, 211, 102, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            width: auto;
+            min-width: 180px;
+            margin-top: 8px;
+        }
+
+        .whatsapp-horizontal i {
+            font-size: 1.3rem;
+        }
+
+        .whatsapp-horizontal:hover {
+            background: linear-gradient(95deg, #20b85a, #0a5e54);
+            transform: scale(1.02);
+            box-shadow: 0 8px 18px rgba(37, 211, 102, 0.4);
+        }
+
+        /* ========= HOVER NA IMAGEM → COLORAÇÃO VIBRANTE NOS TEXTOS ========= */
+        .image-top:hover ~ .card .card-number h1,
+        .main-wrapper:hover .card .card-number h1 {
+            background: linear-gradient(135deg, #FFE6A3, #FF9F4A);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 5px rgba(255, 140, 0, 0.2);
+        }
+
+        .image-top:hover ~ .card .whatsapp-horizontal,
+        .main-wrapper:hover .card .whatsapp-horizontal {
+            background: linear-gradient(95deg, #128C7E, #0a5a4f);
+            transform: scale(1.01);
+        }
+
+        /* responsividade */
+        @media (max-width: 480px) {
+            .main-wrapper {
+                max-width: 100%;
+            }
+            .card {
+                padding: 22px 16px 28px;
+            }
+            .card-number h1 {
+                font-size: 1.2rem;
+            }
+            .whatsapp-horizontal {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+                min-width: 160px;
+            }
+            .whatsapp-horizontal i {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .card-number h1 {
+                font-size: 1rem;
+            }
+            .whatsapp-horizontal {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* animação suave de entrada */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .main-wrapper {
+            animation: fadeUp 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-wrapper">
+        <!-- IMAGEM LIMPA NO TOPO -->
+        <div class="image-top">
+            <img src="./max.jpg" 
+                 alt="Max Ephra - Blockchain Engineer"
+                 onerror="this.onerror=null; this.src='https://placehold.co/800x800/1a1a24/ffffff?text=Max+Ephra'">
+        </div>
+
+        <!-- CARTÃO COM TEXTOS CENTRALIZADOS -->
+        <div class="card">
+            <div class="infos">
+                <section class="card-number">
+                    <h1>Engenheiro Blockchain</h1>
+                    <h1>Investidor</h1>
+                    <h1>Dev Full Stack</h1>
+                </section>
+                <div class="bottom">
+                    <!-- Botão WhatsApp horizontal (ícone + texto) -->
+                    <a href="https://wa.me/5511989321702?"
+                       class="whatsapp-horizontal" target="_blank" rel="noopener noreferrer">
+                        <i class="fa fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
